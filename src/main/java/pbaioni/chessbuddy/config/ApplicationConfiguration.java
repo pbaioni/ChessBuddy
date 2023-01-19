@@ -12,5 +12,4 @@ public class ApplicationConfiguration {
 	public StockfishService getStockfishService() {
 		return new StockfishService();
 	}
-
 }
