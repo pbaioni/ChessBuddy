@@ -23,12 +23,19 @@ public class AnalysisController {
 	}
 
 	@GetMapping()
-	public @ResponseBody String checkHealth() {
-		return "Analysis service is up";
+	public ResponseEntity<Void> checkHealth() {
+		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/onlypawns")
+	@ResponseBody
+	public String getOnlyPawns(@RequestParam String fen) {
+		return analysisService.getOnlyPawns(fen);
 	}
 
 	@GetMapping("/depth")
-	public ResponseEntity<EngineEvaluation> depthAnalysis(@RequestParam String fen, @RequestParam int depth) throws InterruptedException, ExecutionException {
+	public ResponseEntity<EngineEvaluation> depthAnalysis(@RequestParam String fen, @RequestParam int depth)
+			throws InterruptedException, ExecutionException {
 		return new ResponseEntity<EngineEvaluation>(analysisService.getDepthAnalysis(fen, depth), HttpStatus.OK);
 	}
 
