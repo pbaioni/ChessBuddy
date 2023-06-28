@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import stockfish4j.service.Stockfish4jProperties;
 import stockfish4j.service.StockfishService;
 
 @Configuration
@@ -12,7 +13,7 @@ public class ApplicationConfiguration {
 	
 	@Bean
 	public StockfishService getStockfishService() {
-		return new StockfishService();
+		return new StockfishService(Stockfish4jProperties.getInstance());
 	}
 	
     @Bean
